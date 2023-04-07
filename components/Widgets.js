@@ -36,7 +36,7 @@ const Widgets = ({ newsResults, RandomUserResults }) => {
             </div>
 
             {/* bottom who to follow section start  */}
-            <div className="text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2 w-[90%] xl:w-[75%]">
+            <div className="sticky top-16 text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2 w-[90%] xl:w-[75%]">
                 <h4 className="font-bold text-xl px-4 py-2">Who to Follow?</h4>
             {
                 RandomUserResults.slice(0, slicefollow).map((item) => {
