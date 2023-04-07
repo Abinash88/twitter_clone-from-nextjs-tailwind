@@ -1,11 +1,16 @@
 import { FaceSmileIcon, PhotoIcon } from "@heroicons/react/24/solid";
+import { useSession, signOut } from "next-auth/react";
 
 const InputBox = () => {
+
+  const {data: session} = useSession()
   return (
+    <>
+    {session && (
     <div className="flex  border-b border-gray 200 p-3 space-x-3">
-      <img
+      <img onClick={signOut}
         className="h-11 w-11 rounded-full cursor-pointer hover:brightness-[95%]"
-        src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=600"
+        src={session.user.image}
         alt="user image"
       />
       <div className="w-full divide-y divide-gray-200">
@@ -21,6 +26,8 @@ const InputBox = () => {
         </div>
       </div>
     </div>
+    )}
+    </>
   );
 };
 
