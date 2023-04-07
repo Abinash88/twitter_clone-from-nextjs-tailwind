@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Feed from "@/components/Feed";
 import Widgets from "@/components/Widgets";
 
-export default function Home() {
+export default function Home({newsResults}) {
   return (
     <>
       <Head>
@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       </Head>
-      <main className="m-auto flex min-h-screen max-w-7xl mx-auto ">
+      <main className="m-auto flex min-h-screen mx-auto ">
         {/* sidebar section*/}
         <Sidebar />
 
@@ -21,9 +21,22 @@ export default function Home() {
         <Feed/>
 
         {/* widgets section  */}
-        <Widgets/>
+        <Widgets newsResults={newsResults.articles}/>
         {/* popup model box  */}
+
       </main>
     </>
   );
 }
+
+// https://saurav.tech/NewsAPI/top-headlines/category/business/us.json
+
+export async function getServerSideProps() {
+  const newsResults = await fetch('https://saurav.tech/NewsAPI/top-headlines/category/business/us.json').then((res) => res.json());
+  return {
+    props:{
+      newsResults,
+    }
+  }
+}
+
