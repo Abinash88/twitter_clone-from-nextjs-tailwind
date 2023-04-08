@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "twitter-nextjs-6f101",
+    "staging": "twitter-nextjs-6f101"
+  },
+  "targets": {},
+  "etags": {}
+}

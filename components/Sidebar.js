@@ -24,7 +24,7 @@ const Sidebar = () => {
       </div>
 
       {/* menu box  */}
-      <div className="SideBarMenu my-5">
+      <div className="SideBarMenu my-5 ">
         <SideBarMenuItem Text="Home" Icon={HomeIcon} active />
         <SideBarMenuItem Text="Explore" Icon={HashtagIcon} />
         {session && (
@@ -41,7 +41,7 @@ const Sidebar = () => {
       {/* button  */}
       {session ? (
         <>
-          <button className="bg-blue-400 text-white rounded-full w-56 h-12 font-bold  hover:brightness-95 shadow-xl text-lg   xl:inline   flex ">
+          <button className="bg-blue-400 text-white rounded-full w-56 h-12 font-bold  hover:brightness-95 shadow-xl text-lg   xl:inline hidden">
             Tweet
           </button>
 

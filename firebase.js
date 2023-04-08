@@ -5,6 +5,9 @@ import {getStorage} from 'firebase/storage';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// rules for fire base : firebase storage:apply-cors-rules firebase.json
+// twitter-clone
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey:process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
