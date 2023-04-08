@@ -14,7 +14,7 @@ import { signIn, useSession, signOut } from "next-auth/react";
 const Sidebar = () => {
   const { data: session } = useSession();
   return (
-    <div className="hidden sm:flex flex-col p-2 xl:item-center fixed h-full xl:ml-24">
+    <div className="hidden sm:flex flex-col p-2 xl:item-center fixed h-full bg-white  xl:w-[275px]  xl:ml-24">
       {/* twitter logo  */}
       <div className="hoverEffect w-[55px] h-[55px] flex items-center justify-center hover:bg-blue-100 trasnition duration-200">
         <i
