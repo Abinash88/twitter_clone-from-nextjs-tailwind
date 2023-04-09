@@ -12,6 +12,7 @@ import Moment from "react-moment";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { HeartIcon as HeartFillIcon } from "@heroicons/react/24/solid";
+import signin from "@/pages/auth/signin";
 
 const PostBox = ({ post }) => {
   const { data: session } = useSession();
@@ -30,12 +31,17 @@ const PostBox = ({ post }) => {
   }, [likes]);
 
   async function LikePost() {
-    if (HasLiked) {
-      await deleteDoc(doc(db, 'posts', post.id, 'likes', session?.user.uid))
-    } else {
-      await setDoc(doc(db, "posts", post.id, "likes", session?.user.uid), {
-        username: session.user.username,
-      });
+    if(session) {
+
+      if (HasLiked) {
+        await deleteDoc(doc(db, 'posts', post.id, 'likes', session?.user.uid))
+      } else {
+        await setDoc(doc(db, "posts", post.id, "likes", session?.user.uid), {
+          username: session.user.username,
+        });
+      }
+    }else{
+      signin();
     }
   }
   return (
@@ -43,7 +49,7 @@ const PostBox = ({ post }) => {
       {/* user image */}
       <img
         className="mr-4 h-11 w-11 rounded-full"
-        src={post.data().userimage}
+        src={post.data().userImg}
         alt="user image"
       />
       {/* right side  */}
@@ -56,7 +62,7 @@ const PostBox = ({ post }) => {
               <h4 className="font-bold text-[15px] sm:text-[16px] hover:underline">
                 {post.data().name}
               </h4>
-            <span className="text-sm sm:text-[15px] hover:underline">
+            <span className="text-sm sm:text-[13px] hover:underline">
               <Moment fromNow>{post?.data().timestamp?.toDate()}</Moment>
             </span>
             </div>
@@ -67,7 +73,7 @@ const PostBox = ({ post }) => {
         </div>
 
         {/* post text  */}
-        <p className="text-gray-800 text-[15px] sm:text-[16px] mb-2">
+        <p className="text-gray-800  text-[15px] sm:text-[16px] mb-2">
           {post.data().tweet}
         </p>
         {/* post images */}
@@ -92,7 +98,7 @@ const PostBox = ({ post }) => {
             }
             {
               likes.length > 0 && (
-                <span className="absolute right-[-5px]">{likes.length}</span>
+                <span className="absolute right-[-5px] ">{likes.length}</span>
               )
             }
           </div>
